@@ -1,0 +1,8 @@
+# Ignore private SSH keys
+*.pem
+*.key
+*.ppk
+
+# Ignore other sensitive files
+password.txt
+credentials.json
