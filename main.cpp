@@ -1,43 +1,34 @@
 #include <iostream>
 #include <climits>
+#include <string.h>
 using namespace std;
 
 int main() {
 
-    int x=10;
-    int &y =x;
-    cout<<x<<endl;
-    y++;
-    x++;
-    cout<<x<<endl;
+    char s1[20] ="Porgramming";
 
-    // int a = 10;
-    // int *p= &a;
-    // cout<<*p<<endl;
-
-    // int *p = new int[5];
-    // p[0]=12;
-    // p[1]=13;
-    // cout<<p[1]<<endl;
-    //
-    // delete []p;
-    // p=nullptr;
-
-    // int size;
-    // cout<<"Enter number of size";
-    // cin>>size;
-    // int A[size];
-    // cout<<sizeof A <<endl;
-
-    // int size;
-    // cout<<"Enter number of size";
-    // cin>>size;
-    // int *p = new int[size];
-    //
-    // cout<<"Enter number of size";
-    // cin>>size;
-    // p = new int[size];
+    cout<<strchr(s1,'g')<<endl;
 
 
-    return 0;
+    // char s1[20] ="Good";
+    // char s2[10]="";
+    // strncpy(s2,s1,2);
+    // cout<<s2<<endl;
+    // cout<<strlen(s2)<<endl;
+// char S[]="Hello";
+    //char S[]={'H','e','l','l','o','\0', 'p','p','p'};
+    // char *S ="Hello";
+    // string s= "Hello";
+    // char s[100];
+    // char s2[100];
+    // cout<<"Enter your name";
+    // // cin>>s;
+    // //cin.get(s,20);
+    // cin.get(s,100);
+    // cout<<"Welcome "<<s<<endl;
+    // cin.ignore();
+    // cout<<"Enter your name again";
+    // cin.get(s2,100);
+    // cout<<"Welcome "<<s2<<endl;
+return 0;
 }
