@@ -3,39 +3,53 @@
 #include <string.h>
 using namespace std;
 
-class Complex {
+class Rational {
 private:
-    int real;
-    int img;
+    int p;
+    int q;
 public:
-    Complex(int r=0, int i=0) {
-        real = r;
-        img = i;
+    Rational() {
+        p = 1;
+        q = 1;
     }
-    void display() {
-        cout<<real<<"+i"<<img<<endl;
+    Rational(int p, int q) {
+        this->p = p;
+        this->q = q;
     }
-    //friend Complex operator+(Complex c1, Complex c2);
-    // friend ostream & operator<<(ostream &out, Complex &c);
-    //me allon tropo
-    friend void operator<<(ostream &out, Complex &c);
+    Rational(Rational &r) { //edw ebale &r giati mallon kanei xrhsh me allo nickname antikeimenou
+        this->p = r.p;
+        this->q = r.q;
+    }
+    int getP() {
+        return p;
+    }
+    int getQ() {
+        return q;
+    }
+    void setP(int p) {
+        this->p=p;
+
+    }
+    void setQ(int q) {
+        this->q=q;
+    }
+    Rational operator+(Rational r){
+        Rational t;
+        t.p=this->p*r.q +this->q*r.p;
+        t.q=this->q*r.q;
+        return t;
+    }
+    friend ostream & operator<<(ostream &os, Rational &r);
 };
-
-// ostream & operator<<(ostream &out, Complex &c) {
-//     out<<c.real<<"+i"<<c.img<<endl;
-//     return out;
-// }
-void operator<<(ostream &out, Complex &c) {
-    out<<c.real<<"+i"<<c.img<<endl;
-    //return out;
+ostream & operator<<(ostream &os, Rational &r) {
+    os<<r.p<<"/"<<r.q;
+    return os;
 }
-int main() {
-    Complex c(10,5);
-    //c.display();
-    //cout<<c; 8elw na kanw operator gia auto
-    cout<<c;
 
-    //cout<<c<<endl; //auto einai la8os, gia otidhpote meta to c ean einai void operator, alla mono gia "ostream & operator"
-    // einai to idio me to na legame operator<<(cout,c);
+
+int main() {
+    Rational r1(10,5),r2(2,5),r3;
+    r3=r1+r2;
+    cout<<r3;
     return 0;
 }
