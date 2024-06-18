@@ -3,60 +3,58 @@
 #include <string.h>
 using namespace std;
 
-class Rectangle {
+class Complex {
 private:
-    int length;
-    int breadth;
+    int real;
+    int img;
 public:
-    Rectangle();
-    Rectangle(int length, int breadth);
-    //this->length=length
-    Rectangle(Rectangle &r);
-    void setLength(int l);
-    void setBreadth(int b);
-    int getLength(){return length;}
-    int getBreadth(){return breadth;}
-    int area();
-    int perimeter();
-    bool isSquare();
-    ~Rectangle();
+    Complex(int r=0, int i=0) {
+        real = r;
+        img = i;
+    }
+    void display() {
+        cout<<real<<"+i"<<img<<endl;
+    }
+    friend Complex operator+(Complex c1, Complex c2);
+
+// public:
+//     int real;
+//     int img;
+//     Complex add(Complex c) {
+//         Complex temp;
+//         temp.real=real + c.real;
+//         temp.img=img + c.img;
+//         return temp;
+//     }
+//     Complex operator+(Complex c) {
+//         Complex temp;
+//         temp.real=real + c.real;
+//         temp.img=img + c.img;
+//         return temp;
+//     }
 };
 
-
+Complex operator+(Complex c1, Complex c2) {
+    Complex temp;
+    temp.real=c1.real + c2.real;
+    temp.img=c1.img + c2.img;
+    return temp;
+}
 int main() {
-    Rectangle r1(10,10);
-    cout<<"Area "<<r1.area()<<endl;
-    if(r1.isSquare())
-        cout<<"Yes"<<endl;
+    Complex c1(5,3), c2(10,5),c3;
+    c3=c1+c2;
+    c3.display();
+    c3=operator+(c2,c3); //to idio me to pane
+    c3.display();
+    // Complex c1,c2,c3;
+    // c1.real=5; c1.img=4;
+    // c2.real=10; c2.img=5;
+    //
+    //
+    // c3= c1.add(c2);
+    // c3= c2+c1;
+    // cout<<c3.real<<"+i"<<c3.img<<endl;
+
+
     return 0;
-}
-Rectangle::Rectangle() { //scope resolution for default constructor
-    length=1;
-    breadth=1;
-}
-Rectangle::Rectangle(int l, int b) { //scope resolution for default constructor
-    length=l;
-    breadth=b;
-}
-Rectangle::Rectangle(Rectangle &r) { //scope resolution for default constructor
-    length=r.length;
-    breadth=r.breadth;
-}
-void Rectangle::setLength(int l) {
-    length=l;
-}
-void Rectangle::setBreadth(int b) {
-    breadth=b;
-}
-int Rectangle::area() {
-    return length*breadth;
-}
-int Rectangle::perimeter() {
-    return 2*(length+breadth);
-}
-bool Rectangle::isSquare() {
-    return length==breadth;
-}
-Rectangle::~Rectangle() { //sto telos 8a fotwnetai mono tou
-    cout<<"Rectangle destroyed";
 }
