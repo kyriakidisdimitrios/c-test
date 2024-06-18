@@ -15,46 +15,27 @@ public:
     void display() {
         cout<<real<<"+i"<<img<<endl;
     }
-    friend Complex operator+(Complex c1, Complex c2);
-
-// public:
-//     int real;
-//     int img;
-//     Complex add(Complex c) {
-//         Complex temp;
-//         temp.real=real + c.real;
-//         temp.img=img + c.img;
-//         return temp;
-//     }
-//     Complex operator+(Complex c) {
-//         Complex temp;
-//         temp.real=real + c.real;
-//         temp.img=img + c.img;
-//         return temp;
-//     }
+    //friend Complex operator+(Complex c1, Complex c2);
+    // friend ostream & operator<<(ostream &out, Complex &c);
+    //me allon tropo
+    friend void operator<<(ostream &out, Complex &c);
 };
 
-Complex operator+(Complex c1, Complex c2) {
-    Complex temp;
-    temp.real=c1.real + c2.real;
-    temp.img=c1.img + c2.img;
-    return temp;
+// ostream & operator<<(ostream &out, Complex &c) {
+//     out<<c.real<<"+i"<<c.img<<endl;
+//     return out;
+// }
+void operator<<(ostream &out, Complex &c) {
+    out<<c.real<<"+i"<<c.img<<endl;
+    //return out;
 }
 int main() {
-    Complex c1(5,3), c2(10,5),c3;
-    c3=c1+c2;
-    c3.display();
-    c3=operator+(c2,c3); //to idio me to pane
-    c3.display();
-    // Complex c1,c2,c3;
-    // c1.real=5; c1.img=4;
-    // c2.real=10; c2.img=5;
-    //
-    //
-    // c3= c1.add(c2);
-    // c3= c2+c1;
-    // cout<<c3.real<<"+i"<<c3.img<<endl;
+    Complex c(10,5);
+    //c.display();
+    //cout<<c; 8elw na kanw operator gia auto
+    cout<<c;
 
-
+    //cout<<c<<endl; //auto einai la8os, gia otidhpote meta to c ean einai void operator, alla mono gia "ostream & operator"
+    // einai to idio me to na legame operator<<(cout,c);
     return 0;
 }
