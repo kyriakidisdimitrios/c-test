@@ -3,53 +3,56 @@
 #include <string.h>
 using namespace std;
 
-class Rational {
+class Rectangle {
 private:
-    int p;
-    int q;
+    int length;
+    int breadth;
 public:
-    Rational() {
-        p = 1;
-        q = 1;
+    Rectangle();
+    Rectangle(int l, int b);
+    Rectangle(Rectangle &r);
+    int getLength(){return length;}
+    int getBreadth(){return breadth;}
+    void setLength(int length) {
+        this->length = length;
     }
-    Rational(int p, int q) {
-        this->p = p;
-        this->q = q;
+    void setBreadth(int breadth) {
+        this->breadth = breadth;
     }
-    Rational(Rational &r) { //edw ebale &r giati mallon kanei xrhsh me allo nickname antikeimenou
-        this->p = r.p;
-        this->q = r.q;
-    }
-    int getP() {
-        return p;
-    }
-    int getQ() {
-        return q;
-    }
-    void setP(int p) {
-        this->p=p;
-
-    }
-    void setQ(int q) {
-        this->q=q;
-    }
-    Rational operator+(Rational r){
-        Rational t;
-        t.p=this->p*r.q +this->q*r.p;
-        t.q=this->q*r.q;
-        return t;
-    }
-    friend ostream & operator<<(ostream &os, Rational &r);
+    int area();
+    int perimeter();
+    bool isSquare();
+    ~Rectangle();
 };
-ostream & operator<<(ostream &os, Rational &r) {
-    os<<r.p<<"/"<<r.q;
-    return os;
-}
+// Definition of default constructor
+Rectangle::Rectangle() : length(0), breadth(0) {}
+
+// Definition of destructor
+Rectangle::~Rectangle() {}
 
 
+class Cuboid:public Rectangle {
+private:
+        int height;
+public:
+    //Cuboid();
+    Cuboid(int h) {
+        this->height=h;
+    }
+    int getHeight() {
+        return height;
+    }
+    void setHeight(int height) {
+        this->height = height;
+    }
+    int volume() {
+        return getLength()*getBreadth()*height;
+    }
+
+};
 int main() {
-    Rational r1(10,5),r2(2,5),r3;
-    r3=r1+r2;
-    cout<<r3;
-    return 0;
+    Cuboid c(5);
+    c.setLength(10);
+    c.setBreadth(7);
+    cout<<"Volume is: "<<c.volume()<<endl;
 }
