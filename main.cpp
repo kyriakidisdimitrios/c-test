@@ -3,38 +3,31 @@
 #include <string.h>
 using namespace std;
 
-class Parent{
-private:
-    private: int a;
-    protected: int b;
-    public: int c;
-    void funParent() {
-        a=10;
-        b=15;
-        c=15;
+class Base {
+public:
+    void fun1() {
+        cout<<"fun1 of base"<<endl;
     }
 };
-class Child: protected Parent {
-public:
-    void funChild() {
-        //a=10;
-        b=5;
-        c=15;
-    }
-};
-
-class GrantChild: public Child {
-public:
-    void funGrantChild() {
-        //a=10;
-        b=5;
-        c=15;
+class Derived: public Base {
+    public:
+    void fun2() {
+        cout<<"fun2 of derived"<<endl;
     }
 };
 int main() {
-    Child c;
-    //c.a=10;
-    //c.b=5;
-    //c.c=20;
+
+    Derived d; //fun1 of base fun2 of derived
+    d.fun1();
+    d.fun2();
+
+    Derived d1; //fun1 of base fun2 of derived
+    Base *ptr = &d1;
+    ptr->fun1();
+    //ptr->fun2(); //den to blepei
+
+    Base b;
+    //Derived *ptr2 = &b; //den epitepetai
+
     return 0;
 }
