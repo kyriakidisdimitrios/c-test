@@ -3,56 +3,38 @@
 #include <string.h>
 using namespace std;
 
-class Rectangle {
+class Parent{
 private:
-    int length;
-    int breadth;
-public:
-    Rectangle();
-    Rectangle(int l, int b);
-    Rectangle(Rectangle &r);
-    int getLength(){return length;}
-    int getBreadth(){return breadth;}
-    void setLength(int length) {
-        this->length = length;
+    private: int a;
+    protected: int b;
+    public: int c;
+    void funParent() {
+        a=10;
+        b=15;
+        c=15;
     }
-    void setBreadth(int breadth) {
-        this->breadth = breadth;
-    }
-    int area();
-    int perimeter();
-    bool isSquare();
-    ~Rectangle();
 };
-// Definition of default constructor
-Rectangle::Rectangle() : length(0), breadth(0) {}
-
-// Definition of destructor
-Rectangle::~Rectangle() {}
-
-
-class Cuboid:public Rectangle {
-private:
-        int height;
+class Child: protected Parent {
 public:
-    //Cuboid();
-    Cuboid(int h) {
-        this->height=h;
+    void funChild() {
+        //a=10;
+        b=5;
+        c=15;
     }
-    int getHeight() {
-        return height;
-    }
-    void setHeight(int height) {
-        this->height = height;
-    }
-    int volume() {
-        return getLength()*getBreadth()*height;
-    }
+};
 
+class GrantChild: public Child {
+public:
+    void funGrantChild() {
+        //a=10;
+        b=5;
+        c=15;
+    }
 };
 int main() {
-    Cuboid c(5);
-    c.setLength(10);
-    c.setBreadth(7);
-    cout<<"Volume is: "<<c.volume()<<endl;
+    Child c;
+    //c.a=10;
+    //c.b=5;
+    //c.c=20;
+    return 0;
 }
