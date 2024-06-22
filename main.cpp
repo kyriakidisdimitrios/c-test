@@ -3,34 +3,18 @@
 #include <string.h>
 using namespace std;
 
-// class Test {
-// private: int a;
-// protected: int b;
-// public: int c;
-//     friend void fun();
-// };
-//
-// void fun() {
-//     Test t;
-//     t.a-10;
-//     t.b-15;
-//     t.c=9;
-// }
-class Your;
-class My {
-private: int a;
-protected: int b;
-public: int c;
-    friend Your;
-};
-class Your {
-    My m;
-    void fun() {
-        m.a-10;
-        m.b-15;
-        m.c=9;
+class Innova {
+public:
+    static int price;
+    static int getPrice() {
+        return price;
     }
 };
+int Innova::price=20;
 int main() {
+Innova i1,i2,i3;
+    cout<<i1.price<<endl;
+    cout<<i3.price<<endl;
+    cout<<Innova::price<<endl;
 
 }
