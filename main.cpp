@@ -3,26 +3,34 @@
 #include <string.h>
 using namespace std;
 
-class Car {
-public:
-    virtual void start() {
-        cout<<"Car started"<<endl;
-    }
-    //virtual void start()=0;
+// class Test {
+// private: int a;
+// protected: int b;
+// public: int c;
+//     friend void fun();
+// };
+//
+// void fun() {
+//     Test t;
+//     t.a-10;
+//     t.b-15;
+//     t.c=9;
+// }
+class Your;
+class My {
+private: int a;
+protected: int b;
+public: int c;
+    friend Your;
 };
-class Innova:public Car {
-    void start() {
-        cout<<"Innova started"<<endl;
-    }
-};
-class Swift:public Car {
-    void start() {
-        cout<<"Swift started"<<endl;
+class Your {
+    My m;
+    void fun() {
+        m.a-10;
+        m.b-15;
+        m.c=9;
     }
 };
 int main() {
-    Car *p=new Innova();
-    p->start();
-    p=new Swift();
-    p->start();
+
 }
