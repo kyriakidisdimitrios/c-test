@@ -3,18 +3,21 @@
 #include <string.h>
 using namespace std;
 
-class Innova {
+class Outer {
 public:
-    static int price;
-    static int getPrice() {
-        return price;
+    void fun() {
+        i.display();
     }
-};
-int Innova::price=20;
-int main() {
-Innova i1,i2,i3;
-    cout<<i1.price<<endl;
-    cout<<i3.price<<endl;
-    cout<<Innova::price<<endl;
 
-}
+    class Inner {
+        public:
+        void display() {
+            cout<<"Display of Inner"<<endl;
+        }
+
+    };
+    Inner i;
+};
+int main() {
+    Outer::Inner i;
+};
