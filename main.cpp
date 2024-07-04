@@ -1,30 +1,16 @@
 #include <iostream>
-#include <climits>
-#include <string.h>
+
 using namespace std;
 
-int division(int a, int b) {
-    if (b==0)
-        throw 1;
-    else
-        return a/b;
-}
+#define max(x,y) (x>y? x:y)
+#define msg(x) #x
+#define PI 3.1425
+#ifndef PI
+#define PI 3
+#endif
 
 int main() {
-    int x=10, y=0, z;
-    try{
-    //z=x/y;
-         if (y==0)
-             throw 10;
-
-        //z=division(x,y);
-        z=x/y;
-        cout<<z<<endl;
-
-    cout<<x<<endl;
-    }
-    catch(int e) {
-        cout<<"Division by zero "<<e<<endl;
-    }
-    cout<<"Bye"<<endl;
+    //cout<<PI;
+    cout<<max(10,20);
+    cout<<msg(hello);
 };
