@@ -3,21 +3,28 @@
 #include <string.h>
 using namespace std;
 
-class Outer {
-public:
-    void fun() {
-        i.display();
-    }
+int division(int a, int b) {
+    if (b==0)
+        throw 1;
+    else
+        return a/b;
+}
 
-    class Inner {
-        public:
-        void display() {
-            cout<<"Display of Inner"<<endl;
-        }
-
-    };
-    Inner i;
-};
 int main() {
-    Outer::Inner i;
+    int x=10, y=0, z;
+    try{
+    //z=x/y;
+         if (y==0)
+             throw 10;
+
+        //z=division(x,y);
+        z=x/y;
+        cout<<z<<endl;
+
+    cout<<x<<endl;
+    }
+    catch(int e) {
+        cout<<"Division by zero "<<e<<endl;
+    }
+    cout<<"Bye"<<endl;
 };
