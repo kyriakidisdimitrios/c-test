@@ -1,30 +1,25 @@
 #include <iostream>
-
 using namespace std;
 
-#define max(x,y) (x>y? x:y)
-#define msg(x) #x
-#define PI 3.1425
-#ifndef PI
-#define PI 3
-#endif
+class Demo {
+    int *p;
+public:
+    Demo() {
+        p = new int[10]; //epeidi einai sto Heap, prepei na to sbisw ston destructor
+        cout<<"Constructor of Demo"<<endl;
+    }
+    ~Demo() {
+        delete []p;
+        cout<<"Destructor of Demo"<<endl;
+    }
+};
+void fun() {
+    //Demo d; //auto ektelese kai contructor kai destructor, giati dhmiourgh8hke sto Stack
 
-namespace first {
-    void fun() {
-        cout<<"first"<<endl;
-    }
+    Demo *p = new Demo(); //auto ektelese mono constructor
+    //edw to object dhmiourgeite dynamika sto Heap, opote den ekteleitai o destructor
+    delete p;
 }
-namespace second {
-    void fun() {
-        cout<<"second"<<endl;
-    }
-}
-using namespace first;
 int main() {
-    //cout<<PI;
-    //cout<<max(10,20);
-    //cout<<msg(hello);
     fun();
-    second::fun();
-    std::cout<<"hello";
 };
