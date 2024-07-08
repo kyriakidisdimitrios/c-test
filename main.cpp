@@ -1,25 +1,30 @@
 #include <iostream>
 using namespace std;
 
-class Demo {
-    int *p;
+class Base {
 public:
-    Demo() {
-        p = new int[10]; //epeidi einai sto Heap, prepei na to sbisw ston destructor
-        cout<<"Constructor of Demo"<<endl;
+    Base() {
+        cout<<"Constructor of Base"<<endl;
     }
-    ~Demo() {
-        delete []p;
-        cout<<"Destructor of Demo"<<endl;
+    virtual ~Base() { //polu shmantikh h virtual brosta sthn ~Base()
+        cout<<"Destructor of Base"<<endl;
+    }
+};
+class Derived: public Base {
+public:
+    Derived() {
+        cout<<"Constructor of Derived"<<endl;
+    }
+    ~Derived() {
+        cout<<"Destructor of Derived"<<endl;
     }
 };
 void fun() {
-    //Demo d; //auto ektelese kai contructor kai destructor, giati dhmiourgh8hke sto Stack
+    Base *p = new Derived();
+    delete p; //prepei na to sbhsw giati brisketai sth Heap
+    //Derived d;
 
-    Demo *p = new Demo(); //auto ektelese mono constructor
-    //edw to object dhmiourgeite dynamika sto Heap, opote den ekteleitai o destructor
-    delete p;
-}
+};
 int main() {
     fun();
 };
