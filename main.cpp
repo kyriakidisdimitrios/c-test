@@ -3,58 +3,30 @@
 #include <fstream>
 using namespace std;
 
-class Item {
-private:
-    string name;
-    float price;
-    int qty;
-public:
-    Item(){}
-    Item(string n, float p, int q);
-    friend ifstream &operator>>(ifstream &fis,Item &i);
-    friend ofstream &operator<<(ofstream &fos,Item &i);
-    friend ostream &operator<<(ostream &os,Item &i);
-};
-Item::Item(string n,float p, int q): name(n), price(p), qty(q){}
-ifstream &operator>>(ifstream &fis,Item &i) {
-    fis>>i.name>>i.price>>i.qty;
-    return fis;
+template <typename T>
+void fun(T p) {
+    p();
 }
-ofstream &operator<<(ofstream &fos,Item &i) {
-    fos<<i.name<< " "<<i.price<< " "<<i.qty<<endl;
-    return fos;
-}
-ostream &operator<<(ostream &os,Item &i) {
-    os<<"Name " << i.name<< " ,Price: "<<i.price<< ",Quality"<<i.qty<<endl;
-    return os;
-}
-int main() {
-    int n;
-    string name;
-    float price;
-    int qty;
-    cout<<"Enter number of items"<<endl;
-    cin>>n;
+int main(){
+    [](){cout<<"Hello"<<endl;}();
+    [](int x, int y){cout<<"Sum is "<<x+y<<endl;}(10,30);
+    cout<<([](int x, int y){return x+y;}(10,30));
+    int a=[](int x, int y){return x+y;}(10,30);
+    cout<<a;
 
-    vector<Item *> list;
-    cout<<"Enter all item "<<endl;
-    for(int i=0;i<n;i++) {
-        cout<<"Enter "<<i+1<<" Item name, price and quality";
-        cin>>name;
-        cin>>price;
-        cin>>qty;
-        list.push_back(new Item(name, price,qty));
-    }
-    ofstream fos("Item.txt");
-    vector<Item *>::iterator itr;
+    int b=10;
+    [b](){cout<<b<<endl;}();
 
-    for(itr=list.begin();itr!=list.end();itr++) {
-        fos<<**itr; //vector of items
-    }
-    Item item;
-    ifstream fis("Items.txt");
-    for (int i=0;i<3;i++) {
-        fis>>item;
-        cout<<"Item "<<i<<endl<<item<<endl;
-    }
+    // auto f=[b](){cout<<b<<endl;};
+    // f();
+    // b++;
+    // f();
+    // auto fr=[&b](){cout<<b<<endl;};
+    // fr();
+    // b++;
+    // fr(); //auksanei giati einai reference
+
+    auto f=[&a](){cout<<a++<<endl;};
+    fun(f);
+    fun(f);
 };
