@@ -17,7 +17,7 @@ public:
         return balance;
     }
     int deposit(int d) {
-        balance =
+        balance = balance + d;
     }
 };
 int main() {
